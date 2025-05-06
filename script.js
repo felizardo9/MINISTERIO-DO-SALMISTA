@@ -5,7 +5,7 @@ const Header = () => {
     <header className="fixed w-full bg-white shadow-md z-50">
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="#" className="text-2xl font-serif font-bold text-liturgy-blue">
-          Feliz Soluções
+          O Ministério dos Salmistas na Liturgia 
         </a>
         
         <button 
@@ -64,7 +64,7 @@ const About = () => (
       <h2 className="text-3xl font-serif font-bold text-center mb-8">Quem Somos</h2>
       <div className="max-w-3xl mx-auto text-center">
         <p className="text-lg mb-8">
-          Feliz Soluções é uma iniciativa dedicada a fortalecer a espiritualidade católica, 
+          O Ministério dos Salmistas na Liturgia é uma iniciativa dedicada a fortalecer a espiritualidade católica, 
           oferecendo recursos como o eBook 'O Ministério dos Salmistas Católicos na Liturgia', 
           criado por Felizardo Bonifácio João. Nossa missão é formar salmistas e inspirar 
           comunidades a viverem a Palavra de Deus com amor e unção.
@@ -180,7 +180,7 @@ const Contact = () => (
           Faça uma doação via:
         </p>
         <div className="space-y-2">
-          <p>E-Mola: 870807676</p>
+          <p>E-Mola: 870807676 (Falizardo Bonifacio Joao)</p>
           <p>PayPal: felizardobonifacio9@gmail.com</p>
         </div>
       </div>
