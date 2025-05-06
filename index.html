@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Soluções - Inspirando a Fé através da Liturgia</title>
+    <meta name="description" content="Recursos e formação para salmistas e comunidades católicas. Baixe gratuitamente o eBook 'O Ministério dos Salmistas Católicos na Liturgia'.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.20.6/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Noto Serif', 'serif'],
+                        'sans': ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'liturgy': {
+                            'blue': '#1e3a8a',
+                            'gold': '#c4a000',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans">
+    <div id="root"></div>
+    <script type="text/babel" src="script.js"></script>
+</body>
+</html>
