@@ -1,0 +1,246 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - O Ministério dos Salmistas na Liturgia</title>
+    <meta name="description" content="Política de Privacidade do Ministério dos Salmistas na Liturgia, explicando como coletamos, usamos e protegemos suas informações.">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5143473568860418" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.20.6/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+            color: black;
+            background-color: white;
+        }
+        nav a[aria-current='page'] {
+            color: #000;
+            background-color: #d4d4d4;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Noto Serif', 'serif'],
+                        'sans': ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        'liturgy': {
+                            'blue': '#1e3a8a',
+                            'gold': '#c4a000',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans">
+    <div id="root"></div>
+    <script type="text/babel">
+        const Header = () => {
+            const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+            return (
+                <header className="fixed w-full bg-white shadow-md z-50">
+                    <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
+                        <a href="/" className="text-2xl font-serif font-bold text-liturgy-blue">
+                            O Ministério dos Salmistas na Liturgia
+                        </a>
+                        
+                        <button 
+                            className="md:hidden"
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        >
+                            <span className="block w-6 h-0.5 bg-gray-600 mb-1"></span>
+                            <span className="block w-6 h-0.5 bg-gray-600 mb-1"></span>
+                            <span className="block w-6 h-0.5 bg-gray-600"></span>
+                        </button>
+
+                        <div className={`${isMenuOpen ? 'block' : 'hidden'} md:block absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent`}>
+                            <div className="flex flex-col md:flex-row gap-4 p-4 md:p-0">
+                                <a href="/" className="hover:text-liturgy-blue" aria-current={window.location.pathname === '/' ? 'page' : undefined}>Home</a>
+                                <a href="/page2.html" className="hover:text-liturgy-blue" aria-current={window.location.pathname === '/page2.html' ? 'page' : undefined}>Other page</a>
+                                <a href="/privacidade.html" className="hover:text-liturgy-blue" aria-current={window.location.pathname === '/privacidade.html' ? 'page' : undefined}>Privacidade</a>
+                                <a href="#sobre" className="hover:text-liturgy-blue">Sobre</a>
+                                <a href="#ebook" className="hover:text-liturgy-blue">eBook</a>
+                                <a href="#servicos" className="hover:text-liturgy-blue">Serviços</a>
+                                <a href="#contato" className="hover:text-liturgy-blue">Contato</a>
+                                <a 
+                                    href="https://drive.google.com/file/d/1ztl3l9smLPVEt3gL9k2dAQCJX5jUzTH3/view?usp=drive_link"
+                                    target="_blank"
+                                    className="bg-liturgy-blue text-white px-4 py-2 rounded hover:bg-blue-800"
+                                >
+                                    Baixe o eBook Grátis
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                </header>
+            );
+        };
+
+        const PrivacyPolicy = () => (
+            <section className="pt-24 pb-12 bg-white">
+                <div className="container mx-auto px-4">
+                    <h1 className="text-3xl md:text-4xl font-serif font-bold text-liturgy-blue text-center mb-8">
+                        Política de Privacidade
+                    </h1>
+                    <div className="max-w-3xl mx-auto text-lg">
+                        <p className="mb-6">
+                            No Ministério dos Salmistas na Liturgia, valorizamos sua privacidade e estamos comprometidos em proteger suas informações pessoais. Esta Política de Privacidade explica como coletamos, usamos, compartilhamos e protegemos seus dados ao visitar nosso site ou utilizar nossos serviços.
+                        </p>
+
+                        <h2 className="text-2xl font-semibold mb-4">1. Informações que Coletamos</h2>
+                        <p className="mb-4">
+                            Coletamos informações fornecidas diretamente por você, como:
+                        </p>
+                        <ul className="list-disc pl-6 mb-6">
+                            <li>Nome e endereço de e-mail, quando você entra em contato conosco ou faz uma doação.</li>
+                            <li>Informações de pagamento (por exemplo, via E-Mola ou PayPal), processadas por plataformas seguras de terceiros.</li>
+                        </ul>
+                        <p className="mb-4">
+                            Também coletamos dados automaticamente, como:
+                        </p>
+                        <ul className="list-disc pl-6 mb-6">
+                            <li>Dados de navegação (páginas visitadas, tempo no site) via ferramentas analíticas, incluindo anúncios do Google AdSense.</li>
+                            <li>Endereço IP e tipo de dispositivo para melhorar a experiência do usuário.</li>
+                        </ul>
+
+                        <h2 className="text-2xl font-semibold mb-4">2. Como Usamos Suas Informações</h2>
+                        <p className="mb-4">
+                            Utilizamos seus dados para:
+                        </p>
+                        <ul className="list-disc pl-6 mb-6">
+                            <li>Responder às suas perguntas e fornecer suporte.</li>
+                            <li>Processar doações e enviar confirmações.</li>
+                            <li>Melhorar nosso site e personalizar sua experiência, incluindo a exibição de anúncios relevantes via Google AdSense.</li>
+                            <li>Enviar comunicações, como atualizações sobre novos recursos ou eBooks, com seu consentimento.</li>
+                        </ul>
+
+                        <h2 className="text-2xl font-semibold mb-4">3. Compartilhamento de Informações</h2>
+                        <p className="mb-6">
+                            Não vendemos ou alugamos seus dados pessoais. Podemos compartilhar informações com:
+                        </p>
+                        <ul className="list-disc pl-6 mb-6">
+                            <li>Provedores de serviços confiáveis (como PayPal, E-Mola, ou Google AdSense) para processar pagamentos ou exibir anúncios.</li>
+                            <li>Autoridades legais, se exigido por lei.</li>
+                        </ul>
+
+                        <h2 className="text-2xl font-semibold mb-4">4. Segurança dos Dados</h2>
+                        <p className="mb-6">
+                            Implementamos medidas de segurança, como criptografia e servidores seguros, para proteger seus dados. No entanto, nenhum sistema é 100% seguro, e recomendamos que você proteja suas informações pessoais.
+                        </p>
+
+                        <h2 className="text-2xl font-semibold mb-4">5. Seus Direitos</h2>
+                        <p className="mb-4">
+                            Você tem o direito de:
+                        </p>
+                        <ul className="list-disc pl-6 mb-6">
+                            <li>Acessar, corrigir ou excluir seus dados pessoais.</li>
+                            <li>Optar por não receber comunicações de marketing.</li>
+                            <li>Solicitar informações sobre como seus dados são usados.</li>
+                        </ul>
+                        <p className="mb-6">
+                            Para exercer esses direitos, entre em contato conosco em <a href="mailto:felizardobonifacio9@gmail.com" className="text-liturgy-blue hover:underline">felizardobonifacio9@gmail.com</a>.
+                        </p>
+
+                        <h2 className="text-2xl font-semibold mb-4">6. Cookies e Publicidade</h2>
+                        <p className="mb-6">
+                            Nosso site usa cookies para melhorar a experiência do usuário, analisar o tráfego e exibir anúncios personalizados via Google AdSense. Você pode gerenciar as preferências de cookies nas configurações do seu navegador.
+                        </p>
+
+                        <h2 className="text-2xl font-semibold mb-4">7. Alterações a Esta Política</h2>
+                        <p className="mb-6">
+                            Podemos atualizar esta Política de Privacidade periodicamente. A versão mais recente estará sempre disponível nesta página, com a data de atualização indicada abaixo.
+                        </p>
+
+                        <h2 className="text-2xl font-semibold mb-4">8. Contato</h2>
+                        <p className="mb-6">
+                            Para dúvidas sobre esta política, entre em contato:
+                        </p>
+                        <ul className="list-none mb-6">
+                            <li><strong>E-mail</strong>: <a href="mailto:felizardobonifacio9@gmail.com" className="text-liturgy-blue hover:underline">felizardobonifacio9@gmail.com</a></li>
+                            <li><strong>Última atualização</strong>: 07 de maio de 2025</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        );
+
+        const Footer = () => (
+            <footer className="bg-liturgy-blue text-white py-8">
+                <div className="container mx-auto px-4">
+                    <div className="text-center">
+                        <p className="mb-4 font-serif italic">
+                            "Cantemos ao Senhor, aclamemos o Rochedo da nossa salvação." (Salmo 95:1)
+                        </p>
+                        <p className="text-sm">© 2025 Feliz Soluções. Todos os direitos reservados.</p>
+                    </div>
+                </div>
+            </footer>
+        );
+
+        const App = () => (
+            <React.Fragment>
+                <Header />
+                <main>
+                    <PrivacyPolicy />
+                </main>
+                <Footer />
+            </React.Fragment>
+        );
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
