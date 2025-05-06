@@ -93,8 +93,8 @@ const Ebook = () => (
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <img 
-                src="https://github.com/felizardo9/MINISTERIO-DO-SALMISTA/blob/main/ChatGPT%20Image%20May%205%2C%202025%2C%2012_45_55%20PM.png" 
-                alt="Capa do eBook O Ministério dos Salmistas Católicos na Liturgia por Felizard Bonifácio João" 
+                src="ChatGPT Image May 5, 2025, 12_45_55 PM.png" 
+                alt="ChatGPT Image May 5, 2025, 12_45_55 PM" 
                 className="rounded-lg shadow mb-4 w-full"
               />
               <div className="text-center">
