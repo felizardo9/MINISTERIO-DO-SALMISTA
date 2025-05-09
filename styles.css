@@ -1,46 +1,299 @@
+:root {
+    --primary-color: #1e3a8a; /* Deep blue */
+    --secondary-color: #8b0000; /* Dark red */
+    --text-color: #333;
+    --bg-color: #fff;
+    --accent-color: #1a1a1a;
+}
+
 * {
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  color: black;
-  background-color: white;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
 }
 
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  gap: 0.5rem;
-  border-bottom: solid 1px #aaa;
-  background-color: #eee;
+.navbar {
+    background-color: var(--primary-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
 }
 
-nav a {
-  display: inline-block;
-  min-width: 9rem;
-  padding: 0.5rem;
-  border-radius: 0.2rem;
-  border: solid 1px #aaa;
-  text-align: center;
-  text-decoration: none;
-  color: #555;
+.nav-brand {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1.2rem;
 }
 
-nav a[aria-current='page'] {
-  color: #000;
-  background-color: #d4d4d4;
+.nav-brand i {
+    margin-right: 0.5rem;
 }
 
-main {
-  padding: 1rem;
+.search-box {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 20px;
 }
 
-h1 {
-  font-weight: bold;
-  font-size: 1.5rem;
+.search-box input {
+    border: none;
+    outline: none;
+    padding: 0 0.5rem;
+    width: 200px;
+}
+
+.search-box i {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1.5rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.pexels.com/photos/236339/pexels-photo-236339.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    margin-top: 4rem;
+}
+
+.hero h1 {
+    font-family: 'Crimson Text', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section h2 {
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+    font-family: 'Crimson Text', serif;
+}
+
+.mission-content, .formation-content {
+    background: #f9f9f9;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+.qualities-grid, .resources-grid, .posture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.quality-card, .resource-card, .posture-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.quality-card:hover, .resource-card:hover, .posture-card:hover {
+    transform: translateY(-5px);
+}
+
+.quality-card i, .resource-card i, .posture-card i {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.contact-section {
+    background-color: #f5f5f5;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.whatsapp-btn, .email-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s;
+}
+
+.whatsapp-btn {
+    background-color: #25d366;
+    color: white;
+}
+
+.email-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.whatsapp-btn:hover, .email-btn:hover {
+    transform: scale(1.05);
+}
+
+.ebook-section {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.ebook-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.ebook-image {
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.ebook-info {
+    text-align: left;
+    max-width: 500px;
+}
+
+.download-btn {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    margin-top: 2rem;
+    transition: transform 0.3s;
+}
+
+.download-btn:hover {
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+.social-links {
+    margin: 1rem 0;
+}
+
+.social-links a {
+    color: white;
+    margin: 0 0.5rem;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--secondary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+ul li i {
+    color: var(--secondary-color);
+    margin-right: 1rem;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .nav-brand {
+        margin-bottom: 1rem;
+    }
+
+    .nav-links {
+        margin-top: 1rem;
+    }
+
+    .nav-links a {
+        margin: 0 0.5rem;
+    }
+
+    .hero {
+        height: 70vh;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .search-box input {
+        width: 150px;
+    }
+
+    .ebook-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .ebook-image {
+        max-width: 250px;
+    }
 }
